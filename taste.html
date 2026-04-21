@@ -1,0 +1,55 @@
+
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>色が変わるボタン</title>
+  <style>
+    body {
+      background: #0d1117;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      font-family: sans-serif;
+    }
+
+    #colorBtn {
+      font-size: 1.5rem;
+      color: white;
+      background: #1b1f2a;
+      border: 2px solid #00ff99;
+      border-radius: 10px;
+      padding: 16px 50px;
+      cursor: pointer;
+      transition: background-color 0.3s, color 0.3s;
+    }
+
+    /* 押されたときの色 */
+    #colorBtn.active {
+      background: #00ff99;
+      color: #000;
+      border-color: #00cc77;
+    }
+
+    /* 押した瞬間のアニメーション */
+    #colorBtn:active {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+<body>
+
+  <button id="colorBtn">Start</button>
+
+  <script>
+    const btn = document.getElementById("colorBtn");
+
+    btn.addEventListener("click", () => {
+      btn.classList.toggle("active");
+    });
+  </script>
+
+</body>
+</html>

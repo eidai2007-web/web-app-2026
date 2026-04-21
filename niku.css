@@ -1,0 +1,23 @@
+.red {
+    color: white;
+    font-weight: bold;
+    background-color: lightpink;
+}
+.blue {
+    color: white;
+    background-color: cornflowerblue;
+}
+.green {
+    color: white;
+    background-color: mediumaquamarine;
+}
+.card { 
+    color: white; 
+    background-color: darkgray;
+}
+.box { 
+    padding: 20px; 
+    font-size: 24px; 
+    text-align: center; 
+    margin-top: 10px; 
+}

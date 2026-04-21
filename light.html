@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>フォームの値を取得</title>
+</head>
+<body>
+
+  <h2>名前を入力してください</h2>
+  <input type="text" id="nameInput" placeholder="あなたの名前">
+  <button onclick="showName()">表示</button>
+
+  <p id="result"></p>
+
+  <script>
+    function showName() {
+      const name = document.getElementById("nameInput").value;
+      document.getElementById("result").innerText = `こんにちは、${name}さん！`;
+    }
+  </script>
+
+</body>
+</html>

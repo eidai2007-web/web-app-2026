@@ -1,0 +1,59 @@
+body {
+  background: #0b0f16;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#startBtn {
+  font-size: 1.5rem;
+  color: white;
+  background: #1b1f2a;
+  border: 2px solid #00ff99;
+  padding: 15px 40px;
+  border-radius: 12px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow 0.3s;
+}
+
+/* 通常時はほのかに光る */
+#startBtn::before {
+  content: "";
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle at 30% 30%, #00ffcc55, transparent 60%),
+              radial-gradient(circle at 70% 70%, #00ff8855, transparent 60%);
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.5s, transform 1s;
+}
+
+/* 光るアニメーション用クラス */
+#startBtn.glow::before {
+  opacity: 1;
+  animation: aurora 3s ease-in-out infinite alternate;
+}
+
+@keyframes aurora {
+  0% {
+    background: radial-gradient(circle at 20% 80%, #00ff99aa, transparent 60%),
+                radial-gradient(circle at 80% 20%, #00ffaa66, transparent 60%);
+    transform: scale(1);
+  }
+  50% {
+    background: radial-gradient(circle at 60% 40%, #00ffccaa, transparent 60%),
+                radial-gradient(circle at 40% 70%, #00ff6699, transparent 60%);
+    transform: scale(1.2);
+  }
+  100% {
+    background: radial-gradient(circle at 80% 60%, #00ffaa99, transparent 60%),
+                radial-gradient(circle at 30% 40%, #00ffcc66, transparent 60%);
+    transform: scale(1);
+  }
+}
