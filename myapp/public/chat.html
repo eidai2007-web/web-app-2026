@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>チャット</title>
+    <title>チャット 6/8 23:00更新</title>
     <style>
         body { font-family: sans-serif; max-width: 480px; margin: 40px auto;
             background: #f0f4f8; padding: 0 16px; }
@@ -29,7 +29,8 @@
 
   <script>
     async function getMessages() {
-      const response = await fetch('api/messages');
+      // 先頭にスラッシュを追加して絶対パスに変更
+      const response = await fetch('/api/messages');
       const messages = await response.json();
       const ul = document.getElementById('messages');
       ul.innerHTML = '';
@@ -41,7 +42,8 @@
     }
 
     async function sendMessage(username, text) {
-      await fetch('api/messages', {
+      // 先頭にスラッシュを追加して絶対パスに変更
+      await fetch('/api/messages', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ username, text })
