@@ -1,22 +1,35 @@
+require('dotenv').config();
 const express = require('express');
+const { Pool } = require('pg');
 
 const app = express();
-
 app.use(express.json());
+app.use(express.static('public'));
 
-app.post('/api/login', (req, res) => {
-    const { email, password } = req.body;
+const pool = new Pool({
+  host:     process.env.DB_HOST,
+  port:     process.env.DB_PORT,
+  database: process.env.DB_NAME,
+  user:     process.env.DB_USER,
+  password: process.env.DB_PASSWORD,
+});
 
-    console.log({
-        email,
-        password
-    });
+app.get('/api/messages', async (req, res) => {
+  const result = await pool.query(
+    'SELECT * FROM messages ORDER BY created_at ASC'
+  );
+  res.json(result.rows);
+});
 
-    res.json({
-        message: 'ログイン成功'
-    });
+app.post('/api/messages', async (req, res) => {
+  const { username, text } = req.body;
+  const result = await pool.query(
+    'INSERT INTO messages (username, text) VALUES ($1, $2) RETURNING *',
+    [username, text]
+  );
+  res.json(result.rows[0]);
 });
 
 app.listen(3000, () => {
-    console.log('サーバー起動中');
+  console.log('サーバーが起動しました: http://localhost:3000');
 });

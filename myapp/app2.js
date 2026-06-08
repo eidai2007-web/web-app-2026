@@ -1,11 +1,22 @@
-app.post('/api/login', (req, res) => {
-  // 分割代入でデータを取り出す
-  const { email, password } = req.body;
-  
-  // プロパティ省略記法でオブジェクトを作成しログ出力
-  const newItem = { email, password };
-  console.log(newItem);
-  
-  // ワークシートに記載されたレスポンスを返す
-  res.json({ message: "ログイン成功" });
+const express = require('express');
+const app = express();
+
+app.use(express.json());
+app.use(express.static('public'));
+
+const messages = [];
+
+app.get('/api/messages', (req, res) => {
+  res.json(messages);
+});
+
+app.post('/api/messages', (req, res) => {
+  const { username, text } = req.body;
+  const newMessage = { id: messages.length + 1, username, text };
+  messages.push(newMessage);
+  res.json(newMessage);
+});
+
+app.listen(3000, () => {
+  console.log('サーバーが起動しました: http://localhost:3000');
 });
